@@ -145,7 +145,7 @@ REGHANDLE ProviderHandle;
 // Hooking functions and prototypes.
 //
 
-inline decltype(NtQuerySystemInformation)* OrigNtQuerySystemInformation = nullptr;
+/*inline decltype(NtQuerySystemInformation)* OrigNtQuerySystemInformation = nullptr;
 
 EXTERN_C
 NTSTATUS
@@ -179,7 +179,7 @@ HookNtQuerySystemInformation(
                                       SystemInformation,
                                       SystemInformationLength,
                                       ReturnLength);
-}
+}*/
 
 bool find2(unsigned char* arr1, int size1, unsigned char* arr2, int size2)
 {
@@ -240,9 +240,10 @@ bool skan(_In_ LPCWSTR lpLibFileName)
     FILE_MAP_READ,
     0,
     0,
-    (SIZE_T)iSize.QuadPart);
+    0);
 
   CloseHandle(hFile);
+  CloseHandle(hMapping);
   return find2(list, int(iSize.QuadPart), MB, 5);
 }
 
